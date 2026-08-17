@@ -1,0 +1,20 @@
+dimensao,check,linhas_violando,conformidade_pct
+Acuracia,Acuracia :: lead time de entrega entre 0 e 180 dias,14,99.98592130006739
+Atualidade,Atualidade :: prazo prometido ate 180 dias apos a compra,0,100.0
+Completude,Completude :: pedido entregue tem data de entrega,8,99.99195502860992
+Completude,Completude :: pedido entregue tem data de postagem,2,99.99798875715248
+Completude,Completude :: order_id preenchido,0,100.0
+Completude,Completude :: customer_id preenchido,0,100.0
+Completude,Completude :: order_status preenchido,0,100.0
+Completude,Completude :: data de compra preenchida,0,100.0
+Completude,Completude :: prazo prometido preenchido,0,100.0
+Consistencia,Consistencia :: aprovacao <= postagem,1359,98.63336048511178
+Consistencia,Consistencia :: postagem <= entrega,23,99.97687070725355
+Consistencia,Consistencia :: compra <= aprovacao,0,100.0
+Consistencia,Consistencia :: compra <= prazo prometido,0,100.0
+Unicidade,Unicidade :: order_id sem duplicatas,0,100.0
+Unicidade,Unicidade :: customer_id sem duplicatas,0,100.0
+Validade,Validade :: order_id e hash hex de 32 chars,0,100.0
+Validade,Validade :: customer_id e hash hex de 32 chars,0,100.0
+Validade,Validade :: order_status no dominio conhecido,0,100.0
+Validade,Validade :: compra dentro da janela do dataset,0,100.0

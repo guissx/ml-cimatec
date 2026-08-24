@@ -2,34 +2,28 @@ import pandas as pd
 from pathlib import Path
 from loguru import logger
 
-def load_data(order_path: Path, items_path: Path, products_path: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+def load_data(order_path: Path, items_path: Path, customers_path: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
-    Load and merge the orders, order items, and products datasets.
+    Load the orders, order items, and customers datasets.
 
     Args:
         order_path (Path): Path to the orders dataset.
         items_path (Path): Path to the order items dataset.
-        products_path (Path): Path to the products dataset.
+        customers_path (Path): Path to the customers dataset.
 
     Returns:
-        tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]: Individual DataFrames for orders, order items, and products.
+        tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]: Individual DataFrames for orders, order items, and customers.
     """
     logger.info("Loading datasets...")
-    
+
     # Load datasets
     orders = pd.read_csv(order_path, parse_dates=['order_purchase_timestamp', 'order_approved_at', 'order_delivered_carrier_date', 'order_delivered_customer_date', 'order_estimated_delivery_date'])
     items = pd.read_csv(items_path)
-    products = pd.read_csv(products_path)
+    customers = pd.read_csv(customers_path)
 
-    logger.info("Merging datasets...")
-    
-    # Merge datasets
-    merged_df = orders.merge(items, on='order_id', how='left')
-    merged_df = merged_df.merge(products, on='product_id', how='left')
+    logger.info("Datasets loaded successfully.")
 
-    logger.info("Datasets loaded and merged successfully.")
-    
-    return orders, items, products
+    return orders, items, customers
 
 
 def save_data(dataset: pd.DataFrame, output_dir: Path) -> None:

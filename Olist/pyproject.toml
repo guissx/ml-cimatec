@@ -18,6 +18,7 @@ classifiers = [
 dependencies = [
     "ipython",
     "jupyterlab",
+    "lightgbm>=4.7.0",
     "loguru",
     "matplotlib",
     "notebook",
@@ -31,6 +32,7 @@ dependencies = [
     "seaborn>=0.13.2",
     "tqdm",
     "typer",
+    "xgboost>=3.4.1",
 ]
 requires-python = "==3.14.3"
 

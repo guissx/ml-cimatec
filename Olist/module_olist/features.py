@@ -29,6 +29,12 @@ def create_features(data: pd.DataFrame) -> pd.DataFrame:
         data["order_purchase_timestamp"].dt.month
     )
 
+    # Extrai o dia do mês em que a compra foi realizada.
+    # Os valores variam de 1 a 31.
+    data["purchase_day"] = (
+        data["order_purchase_timestamp"].dt.day
+    )
+
     # Extrai o dia da semana em que a compra foi realizada.
     #
     # O Pandas representa os dias da seguinte forma:

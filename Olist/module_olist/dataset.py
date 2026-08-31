@@ -1,6 +1,8 @@
-import pandas as pd 
 from pathlib import Path
+
 from loguru import logger
+import pandas as pd
+
 
 def load_data(order_path: Path, items_path: Path, customers_path: Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """

@@ -30,3 +30,44 @@ try:
     logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
 except ModuleNotFoundError:
     pass
+
+# ---------------------------------------------------------------------------
+# Configuração de modelagem
+# ---------------------------------------------------------------------------
+
+# Semente única para todo o projeto: split, folds da validação cruzada e os
+# próprios modelos. Centralizar evita que uma parte use 42 e outra use outro
+# valor, o que tornaria os resultados irreproduzíveis sem ninguém perceber.
+RANDOM_STATE = 42
+
+# Proporção da base reservada para o teste final.
+TEST_SIZE = 0.2
+
+# Quantidade de divisões usadas na validação cruzada.
+N_SPLITS = 5
+
+TARGET = "is_late"
+
+# customer_state é a única categórica usada. customer_city ficou de fora de
+# propósito: são 4.085 cidades distintas, e a codificação one-hot criaria mais
+# colunas do que o modelo consegue aproveitar com 77 mil linhas de treino.
+CATEGORICAL_FEATURES = [
+    "customer_state",
+]
+
+NUMERIC_FEATURES = [
+    "purchase_hour",
+    "purchase_day",
+    "purchase_weekday",
+    "purchase_month",
+    "promised_days",
+    "item_count",
+    "seller_count",
+    "total_freight",
+    "total_price",
+]
+
+FEATURES = NUMERIC_FEATURES + CATEGORICAL_FEATURES
+
+# Arquivo onde o melhor modelo é gravado, junto do threshold escolhido.
+MODEL_PATH = MODELS_DIR / "model.joblib"

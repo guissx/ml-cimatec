@@ -1,19 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-FEATURES = [
-    "purchase_hour",
-    "purchase_day",
-    "purchase_weekday",
-    "purchase_month",
-    "promised_days",
-    "item_count",
-    "seller_count",
-    "total_freight",
-    "customer_state",
-]
-
-TARGET = "is_late"
+from module_olist.config import FEATURES, RANDOM_STATE, TARGET, TEST_SIZE
 
 
 def split_data(data: pd.DataFrame):
@@ -29,7 +17,14 @@ def split_data(data: pd.DataFrame):
     X = data[FEATURES]
     y = data[TARGET]
 
-    return train_test_split(X, 
-                            y,
-                            test_size=0.2, random_state=42,
-                            stratify=y)
+    return train_test_split(
+        X,
+        y,
+        test_size=TEST_SIZE,
+        random_state=RANDOM_STATE,
+
+        # Mantém a mesma proporção de atrasos nos dois conjuntos. Sem isso, com
+        # apenas 8% de positivos, o sorteio poderia desbalancear treino e teste
+        # e a métrica passaria a medir a sorte da divisão.
+        stratify=y,
+    )

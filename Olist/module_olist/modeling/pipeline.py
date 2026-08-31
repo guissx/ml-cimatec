@@ -8,17 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from xgboost import XGBClassifier
 
-from module_olist.modeling.split import FEATURES
-
-RANDOM_STATE = 42
-
-# customer_state é a única feature em formato de texto ("SP", "RJ", ...).
-# Nenhum estimador do scikit-learn aceita texto diretamente, então ela precisa
-# ser convertida em colunas numéricas antes de chegar ao modelo.
-CATEGORICAL_FEATURES = ["customer_state"]
-
-# As demais features já são numéricas e seguem direto para o modelo.
-NUMERIC_FEATURES = [feature for feature in FEATURES if feature not in CATEGORICAL_FEATURES]
+from module_olist.config import CATEGORICAL_FEATURES, NUMERIC_FEATURES, RANDOM_STATE
 
 
 def create_preprocessor() -> ColumnTransformer:

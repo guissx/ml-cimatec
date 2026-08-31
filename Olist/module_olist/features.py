@@ -1,5 +1,5 @@
-import pandas as pd
 from loguru import logger
+import pandas as pd
 
 from module_olist.dataset import aggregate_data, create_target
 

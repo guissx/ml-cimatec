@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from xgboost import XGBClassifier
 
-from module_olist.split import FEATURES
+from module_olist.modeling.split import FEATURES
 
 RANDOM_STATE = 42
 
@@ -171,6 +171,42 @@ def create_pipeline(model) -> Pipeline:
             ("model", model),
         ]
     )
+
+
+def create_gradient_boosting_pipeline() -> Pipeline:
+    """Monta o pipeline do GradientBoostingClassifier.
+
+    Returns:
+        Pipeline: Pipeline pronto para receber fit e predict.
+
+    """
+    return create_pipeline(build_models()["gradient_boosting"])
+
+
+def create_xgb_pipeline(scale_pos_weight: float | None = None) -> Pipeline:
+    """Monta o pipeline do XGBoost.
+
+    Args:
+        scale_pos_weight (float | None): Peso da classe positiva.
+
+    Returns:
+        Pipeline: Pipeline pronto para receber fit e predict.
+
+    """
+    return create_pipeline(build_models(scale_pos_weight)["xgboost"])
+
+
+def create_lgbm_pipeline(scale_pos_weight: float | None = None) -> Pipeline:
+    """Monta o pipeline do LightGBM.
+
+    Args:
+        scale_pos_weight (float | None): Peso da classe positiva.
+
+    Returns:
+        Pipeline: Pipeline pronto para receber fit e predict.
+
+    """
+    return create_pipeline(build_models(scale_pos_weight)["lightgbm"])
 
 
 def build_pipelines(scale_pos_weight: float | None = None) -> dict[str, Pipeline]:

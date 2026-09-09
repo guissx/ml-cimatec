@@ -30,6 +30,7 @@ dependencies = [
     "ruff",
     "scikit-learn",
     "seaborn>=0.13.2",
+    "shap>=0.52.0",
     "tqdm",
     "typer",
     "xgboost>=3.4.1",

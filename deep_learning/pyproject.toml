@@ -29,10 +29,11 @@ dependencies = [
     "python-dotenv",
     "ruff",
     "scikit-learn",
+    "tensorflow>=2.21.0",
     "tqdm",
     "typer",
 ]
-requires-python = "~=3.14.0"
+requires-python = "~=3.12.0"
 
 
 [tool.ruff]

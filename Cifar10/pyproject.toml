@@ -1,0 +1,51 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "module_cifar10"
+version = "0.0.1"
+description = "Classificador de imagens CIFAR-10 com rede neural convolucional"
+authors = [
+  { name = "Gustavo Ferreira" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+
+]
+dependencies = [
+    "ipython",
+    "jupyterlab",
+    "loguru",
+    "matplotlib",
+    "notebook",
+    "numpy",
+    "pip",
+    "pytest",
+    "python-dotenv",
+    "ruff",
+    "tensorflow>=2.21.0",
+    "tqdm",
+    "typer",
+]
+requires-python = "~=3.12.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["module_cifar10"]
+include = ["pyproject.toml", "module_cifar10/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["module_cifar10"]
+force-sort-within-sections = true
+
+[dependency-groups]
+dev = [
+    "mkdocs>=1.6.1",
+]

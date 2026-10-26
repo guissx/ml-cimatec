@@ -1,0 +1,56 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "module_reconhecimento_facial"
+version = "0.0.1"
+description = "Controle de acesso por reconhecimento facial com OpenCV e DeepFace"
+authors = [
+  { name = "Gustavo Ferreira" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+
+]
+dependencies = [
+    "deepface",
+    "loguru",
+    "numpy",
+    # O 5.x não traz mais os arquivos Haar Cascade usados pelo detector "opencv" do DeepFace.
+    "opencv-python>=4.10,<5",
+    "pip",
+    "pytest",
+    "python-dotenv",
+    "ruff",
+    "tensorflow>=2.21.0",
+    "tf-keras",
+    "tqdm",
+    "typer",
+]
+requires-python = "~=3.12.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["module_reconhecimento_facial"]
+include = ["pyproject.toml", "module_reconhecimento_facial/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["module_reconhecimento_facial"]
+force-sort-within-sections = true
+
+[dependency-groups]
+dev = [
+    "mkdocs>=1.6.1",
+]
+
+[tool.pytest.ini_options]
+# O teste de integração baixa pesos e fotos de exemplo; roda só com `pytest -m integracao`.
+addopts = "-m 'not integracao'"
+markers = ["integracao: usa o modelo real e baixa fotos de exemplo do repositório do DeepFace"]

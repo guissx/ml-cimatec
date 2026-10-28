@@ -1,0 +1,8 @@
+# Ambiente Python 3.12 dos notebooks de qualidade e profiling.
+ipykernel
+jupyterlab
+pandas>=2.2,<3
+pandera[pandas]>=0.24
+pytest
+setuptools<81
+ydata-profiling==4.18.4

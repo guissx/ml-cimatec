@@ -6,6 +6,29 @@
 
 Brazilian E-Commerce Dive Deep using SQL
 
+## Notebooks de qualidade dos dados
+
+Os notebooks `01_data_quality.ipynb` e `profilling.ipynb` usam um ambiente
+separado em Python 3.12, com versões fixadas em `requirements-profiling.txt`.
+Na pasta `Olist`, execute:
+
+```powershell
+python -m uv venv .venv-profiling --python 3.12
+python -m uv pip sync --python .venv-profiling/Scripts/python.exe requirements-profiling.txt
+.venv-profiling/Scripts/python.exe -m jupyterlab notebooks
+```
+
+Selecione o kernel Python desse ambiente. Coloque `olist_orders_dataset.csv`
+em `Olist/data/raw/` antes de executar as células em ordem. Os relatórios são
+salvos em `Olist/reports/`. No Linux/macOS, use `bin/python` no lugar de
+`Scripts/python.exe`.
+
+Para verificar os notebooks com dados sintéticos, sem baixar a base:
+
+```powershell
+.venv-profiling/Scripts/python.exe -m pytest tests/test_data_quality_notebook.py -q
+```
+
 ## Project Organization
 
 ```
